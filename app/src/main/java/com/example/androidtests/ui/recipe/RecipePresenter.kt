@@ -3,7 +3,6 @@ package com.example.androidtests.ui.recipe
 import com.example.androidtests.data.local.Favorites
 import com.example.androidtests.data.local.RecipeStore
 import com.example.androidtests.data.model.Recipe
-import kotlinx.android.synthetic.main.activity_recipe.*
 
 class RecipePresenter(
     private val store: RecipeStore,
@@ -11,7 +10,7 @@ class RecipePresenter(
     private val favorites: Favorites
 ) : RecipeContract.Listener {
 
-    lateinit var recipe: Recipe
+    var recipe: Recipe? = null
 
     fun loadRecipe(id: String) {
         store.getRecipe(id)?.let {
@@ -25,7 +24,11 @@ class RecipePresenter(
     }
 
     fun toggleFavorite() {
-        val favorite = favorites.toggle(recipe.id)
-        view.setFavorite(favorite)
+        recipe?.let {
+            val favorite = favorites.toggle(it.id)
+            view.setFavorite(favorite)
+        } ?: run {
+            throw IllegalStateException()
+        }
     }
 }
