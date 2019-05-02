@@ -6,39 +6,43 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.androidtests.R
 import com.example.androidtests.data.injection.RecipeApplication
 import com.example.androidtests.data.local.RecipeStore
-import com.example.androidtests.data.local.SharedPreferencesFavorites
 import kotlinx.android.synthetic.main.activity_recipe.*
 
 
-class RecipeActivity : AppCompatActivity() {
+class RecipeActivity : AppCompatActivity(), RecipeContract.View {
+
+    lateinit var presenter: RecipePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe)
 
+        val id = intent.getStringExtra(KEY_ID) ?: KEY_ID
+
         val store = RecipeStore(this, "recipes")
-        val id = intent.getStringExtra(KEY_ID) ?: "id"
-        val recipe = store.getRecipe(id)
+        val favorites = (application as RecipeApplication).getFavorites()
 
-        if (recipe == null) {
-            tvTitle.visibility = View.GONE
-            tvDesctiption.text = getString(R.string.recipe_not_found)
-            return
-        }
+        presenter = RecipePresenter(store, this, favorites)
+        presenter.loadRecipe(id)
 
-        val app = application as RecipeApplication
+        tvTitle.setOnClickListener { presenter.toggleFavorite() }
+    }
 
-        val favorites = app.getFavorites()
+    override fun showRecipeNotFoundError() {
+        tvTitle.visibility = View.GONE
+        tvDesctiption.text = getString(R.string.recipe_not_found)
+    }
 
-        val favorite = favorites.get(recipe.id)
-        tvTitle.text = recipe.title
+    override fun setTitle(title: String) {
+        tvTitle.text = title
+    }
+
+    override fun setDescription(description: String) {
+        tvDesctiption.text = description
+    }
+
+    override fun setFavorite(favorite: Boolean) {
         tvTitle.isSelected = favorite
-        tvTitle.setOnClickListener {
-            val result = favorites.toggle(recipe.id)
-            tvTitle.isSelected = result
-        }
-        tvDesctiption.text = recipe.description
-
     }
 
     companion object {
