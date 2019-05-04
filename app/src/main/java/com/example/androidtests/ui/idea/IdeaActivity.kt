@@ -46,8 +46,7 @@ class IdeaActivity : AppCompatActivity() {
             ideas,
             object : IdeaAdapter.OnItemClickListener {
                 override fun onItemClick(position: Int) {
-                    val data = Intent()
-                        .putExtra(KEY_NAME, ideas[position])
+                    val data = Intent().putExtra(KEY_NAME, ideas[position])
                     setResult(Activity.RESULT_OK, data)
                     finish()
                 }

@@ -1,7 +1,7 @@
 package com.example.androidtests.ui.recipe
 
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
-import androidx.test.runner.AndroidJUnit4
 import com.example.androidtests.R
 import com.example.androidtests.data.test.RecipeRobot.Companion.withRecipeRobot
 import org.junit.Rule

@@ -19,8 +19,7 @@ class RecipeRobot : ScreenRobot<RecipeRobot>() {
     }
 
     fun launch(rule: ActivityTestRule<*>, id: String) {
-        val intent = Intent()
-        intent.putExtra(RecipeActivity.KEY_ID, id)
+        val intent = Intent().putExtra(RecipeActivity.KEY_ID, id)
         rule.launchActivity(intent)
     }
 
