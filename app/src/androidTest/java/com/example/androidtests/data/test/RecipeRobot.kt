@@ -6,7 +6,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import com.example.androidtests.R
 import com.example.androidtests.data.injection.TestRecipeApplication
-import com.example.androidtests.ui.recipe.InMemoryFavorites
+import com.example.androidtests.data.utils.InMemoryFavorites
 import com.example.androidtests.ui.recipe.RecipeActivity
 
 class RecipeRobot : ScreenRobot<RecipeRobot>() {

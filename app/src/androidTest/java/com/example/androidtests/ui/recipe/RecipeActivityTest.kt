@@ -1,14 +1,18 @@
 package com.example.androidtests.ui.recipe
 
 import androidx.test.rule.ActivityTestRule
+import androidx.test.runner.AndroidJUnit4
 import com.example.androidtests.R
 import com.example.androidtests.data.test.RecipeRobot.Companion.withRecipeRobot
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 
+@RunWith(AndroidJUnit4::class)
 class RecipeActivityTest {
-    @get:Rule
-    var activityRule = ActivityTestRule<RecipeActivity>(RecipeActivity::class.java)
+    @Rule
+    @JvmField
+    var activityRule = ActivityTestRule(RecipeActivity::class.java)
 
     @Test
     fun recipeNotFound() {

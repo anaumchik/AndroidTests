@@ -1,9 +1,9 @@
-package com.example.androidtests.ui.recipe
+package com.example.androidtests.data.utils
 
 import com.example.androidtests.data.local.Favorites
 
 class InMemoryFavorites : Favorites {
-    val map = HashMap<String, Boolean>()
+    private val map = HashMap<String, Boolean>()
 
     override fun get(id: String): Boolean = map[id] ?: false
 
