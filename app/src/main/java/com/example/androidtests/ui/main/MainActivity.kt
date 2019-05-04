@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.androidtests.MyApplication
 import com.example.androidtests.R
 import com.example.androidtests.data.local.RecipeStore
 import com.example.androidtests.ui.idea.IdeaActivity
@@ -17,7 +18,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initGreetings()
         initRecipes()
+    }
+
+    private fun initGreetings() {
+        val currentTime = (application as MyApplication).getCustomClock().getNow()
+        val greetingId = when (currentTime.hourOfDay) {
+            in 5..12 -> R.string.greeting_morning
+            in 12..17 -> R.string.greeting_afternoon
+            in 17..23 -> R.string.greeting_evening
+            else -> R.string.greeting_night
+        }
+
+        tvGreeting.setText(greetingId)
     }
 
     private fun initRecipes() {
@@ -34,15 +48,12 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(intent, REQUEST_CODE_IDEAS)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when (requestCode) {
-            REQUEST_CODE_IDEAS -> (etName as TextView).text = data?.getStringExtra(IdeaActivity.KEY_NAME)
-            else -> super.onActivityResult(requestCode, resultCode, data)
-        }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) = when (requestCode) {
+        REQUEST_CODE_IDEAS -> (etName as TextView).text = data?.getStringExtra(IdeaActivity.KEY_NAME)
+        else -> super.onActivityResult(requestCode, resultCode, data)
     }
 
     companion object {
         private const val REQUEST_CODE_IDEAS = 1
     }
-
 }

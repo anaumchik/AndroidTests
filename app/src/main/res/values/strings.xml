@@ -39,5 +39,9 @@
         <item>Puma Thurman</item>
     </string-array>
 
+    <string name="greeting_morning">Good morning</string>
+    <string name="greeting_afternoon">Good afternoon</string>
+    <string name="greeting_evening">Good evening</string>
+    <string name="greeting_night">Good night</string>
 
 </resources>

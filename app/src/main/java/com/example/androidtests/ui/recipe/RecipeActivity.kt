@@ -3,8 +3,8 @@ package com.example.androidtests.ui.recipe
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.androidtests.MyApplication
 import com.example.androidtests.R
-import com.example.androidtests.data.injection.RecipeApplication
 import com.example.androidtests.data.local.RecipeStore
 import kotlinx.android.synthetic.main.activity_recipe.*
 
@@ -20,7 +20,7 @@ class RecipeActivity : AppCompatActivity(), RecipeContract.View {
         val id = intent.getStringExtra(KEY_ID) ?: KEY_ID
 
         val store = RecipeStore(this, "recipes")
-        val favorites = (application as RecipeApplication).getFavorites()
+        val favorites = (application as MyApplication).getFavorites()
 
         presenter = RecipePresenter(store, this, favorites)
         presenter.loadRecipe(id)
