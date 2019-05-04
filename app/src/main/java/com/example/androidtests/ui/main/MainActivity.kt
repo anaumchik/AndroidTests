@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidtests.R
 import com.example.androidtests.data.local.RecipeStore
-import com.example.androidtests.ui.main.adapter.recipe.RecipeAdapter
+import com.example.androidtests.ui.idea.IdeaActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.example.androidtests.ui.main
+package com.example.androidtests.ui.idea
 
 import android.app.Activity
 import android.content.Intent
@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidtests.R
-import com.example.androidtests.ui.main.adapter.idea.IdeaAdapter
 import kotlinx.android.synthetic.main.activity_ideas.*
 
 class IdeaActivity : AppCompatActivity() {
@@ -43,14 +42,16 @@ class IdeaActivity : AppCompatActivity() {
 
         rvIdeas.setHasFixedSize(true)
         rvIdeas.layoutManager = LinearLayoutManager(this)
-        rvIdeas.adapter = IdeaAdapter(ideas, object : IdeaAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
-                val data = Intent()
-                    .putExtra(KEY_NAME, ideas[position])
-                setResult(Activity.RESULT_OK, data)
-                finish()
-            }
-        })
+        rvIdeas.adapter = IdeaAdapter(
+            ideas,
+            object : IdeaAdapter.OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    val data = Intent()
+                        .putExtra(KEY_NAME, ideas[position])
+                    setResult(Activity.RESULT_OK, data)
+                    finish()
+                }
+            })
     }
 
     companion object {

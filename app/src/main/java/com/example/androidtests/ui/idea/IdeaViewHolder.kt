@@ -1,4 +1,4 @@
-package com.example.androidtests.ui.main.adapter.idea
+package com.example.androidtests.ui.idea
 
 import android.view.View
 import android.widget.TextView

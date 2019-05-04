@@ -1,4 +1,4 @@
-package com.example.androidtests.ui.main.adapter.recipe
+package com.example.androidtests.ui.main
 
 import android.view.View
 import android.widget.TextView

@@ -22,7 +22,7 @@
                   android:parentActivityName=".ui.main.MainActivity">
         </activity>
         <activity
-                android:name=".ui.main.IdeaActivity"
+                android:name=".ui.idea.IdeaActivity"
                 android:label="@string/title_ideas"/>
     </application>
 
