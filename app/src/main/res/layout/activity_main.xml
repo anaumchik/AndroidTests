@@ -7,16 +7,28 @@
         android:layout_height="match_parent"
         tools:context=".ui.main.MainActivity">
 
+    <Button
+            android:id="@+id/btnIdleActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@string/go_to_idle_activity"
+            android:onClick="goToIdleActivity"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etName"/>
+
     <TextView
             android:id="@+id/tvGreeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="28sp"
+            tools:text="Greeting"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
+            app:layout_constraintTop_toBottomOf="@id/btnIdleActivity"/>
 
     <EditText
             android:id="@+id/etName"

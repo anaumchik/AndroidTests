@@ -12,6 +12,7 @@ import com.example.androidtests.R
 import com.example.androidtests.data.local.RecipeStore
 import com.example.androidtests.data.utils.CustomClock
 import com.example.androidtests.ui.idea.IdeaActivity
+import com.example.androidtests.ui.idle.IdleActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -53,6 +54,8 @@ class MainActivity : AppCompatActivity() {
             .putExtra(IdeaActivity.KEY_THEME, (v as Button).text)
         startActivityForResult(intent, REQUEST_CODE_IDEAS)
     }
+
+    fun goToIdleActivity(v: View) = startActivity(Intent(this, IdleActivity::class.java))
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) = when (requestCode) {
         REQUEST_CODE_IDEAS -> (etName as TextView).text = data?.getStringExtra(IdeaActivity.KEY_NAME)

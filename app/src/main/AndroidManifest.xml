@@ -24,6 +24,9 @@
         <activity
                 android:name=".ui.idea.IdeaActivity"
                 android:label="@string/title_ideas"/>
+        <activity
+                android:name=".ui.idle.IdleActivity"
+                android:label="@string/title_ideas"/>
     </application>
 
 </manifest>
