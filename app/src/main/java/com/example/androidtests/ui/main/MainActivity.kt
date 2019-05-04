@@ -10,21 +10,27 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidtests.MyApplication
 import com.example.androidtests.R
 import com.example.androidtests.data.local.RecipeStore
+import com.example.androidtests.data.utils.CustomClock
 import com.example.androidtests.ui.idea.IdeaActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+    @Inject
+    lateinit var customClock: CustomClock
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        (application as MyApplication).component.inject(this)
+
         initGreetings()
         initRecipes()
     }
 
     private fun initGreetings() {
-        val currentTime = (application as MyApplication).getCustomClock().getNow()
-        val greetingId = when (currentTime.hourOfDay) {
+        val greetingId = when (customClock.getNow().hourOfDay) {
             in 5..12 -> R.string.greeting_morning
             in 12..17 -> R.string.greeting_afternoon
             in 17..23 -> R.string.greeting_evening

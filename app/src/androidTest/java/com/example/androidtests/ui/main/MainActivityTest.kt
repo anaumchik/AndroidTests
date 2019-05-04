@@ -15,8 +15,10 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.example.androidtests.DaggerTestComponent
 import com.example.androidtests.R
 import com.example.androidtests.TestMyApplication
+import com.example.androidtests.data.utils.CustomClock
 import com.example.androidtests.ui.idea.IdeaActivity
 import org.joda.time.DateTime
 import org.junit.Rule
@@ -32,10 +34,14 @@ class MainActivityTest {
 
     @Test
     fun evening() {
-        val app = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as TestMyApplication
-        val clock = app.getCustomClock()
+        val customClock = Mockito.mock(CustomClock::class.java)
 
-        Mockito.`when`(clock.getNow()).thenReturn(DateTime().withHourOfDay(20))
+        val app = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as TestMyApplication
+        app.component = DaggerTestComponent.builder()
+            .customClock(customClock)
+            .build()
+
+        Mockito.`when`(customClock.getNow()).thenReturn(DateTime().withHourOfDay(20))
 
         activityRule.launchActivity(null)
 
