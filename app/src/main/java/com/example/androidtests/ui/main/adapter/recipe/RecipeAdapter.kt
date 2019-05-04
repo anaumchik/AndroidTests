@@ -1,4 +1,4 @@
-package com.example.androidtests.ui.main
+package com.example.androidtests.ui.main.adapter.recipe
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -12,7 +12,13 @@ import com.example.androidtests.ui.recipe.RecipeActivity.Companion.KEY_ID
 class RecipeAdapter(private val store: RecipeStore) : RecyclerView.Adapter<RecipeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder =
-        RecipeViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false))
+        RecipeViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.list_item,
+                parent,
+                false
+            )
+        )
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
         val recipe = store.recipes[position]

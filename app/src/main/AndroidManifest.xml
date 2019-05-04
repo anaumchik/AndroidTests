@@ -21,6 +21,9 @@
         <activity android:name=".ui.recipe.RecipeActivity"
                   android:parentActivityName=".ui.main.MainActivity">
         </activity>
+        <activity
+                android:name=".ui.main.IdeaActivity"
+                android:label="@string/title_ideas"/>
     </application>
 
 </manifest>
